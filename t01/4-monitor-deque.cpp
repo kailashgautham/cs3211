@@ -8,7 +8,6 @@ struct Job {
 class JobQueue4 {
   std::queue<Job> jobs;
   std::mutex m;
-  std::counting_semaphore<> count;
   std::condition_variable cond;
 
   public:

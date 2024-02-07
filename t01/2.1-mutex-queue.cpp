@@ -13,7 +13,11 @@ class JobQueue1 {
   JobQueue1() : jobs{}, m{} {}
   void enqueue(Job job) {
     m.lock();
-    jobs.push(job);
+    try {
+      jobs.push(job);
+    } catch(...) {
+      m.unlock();
+    }
     m.unlock();
   }
 

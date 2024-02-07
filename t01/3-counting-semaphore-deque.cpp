@@ -30,11 +30,10 @@ class JobQueue3 {
   }
 
   Job deque() {
-    std::unique_lock lock{m};
     count.acquire();
+    std::unique_lock lock{m};
     Job j = jobs.front();
     jobs.pop();
     return j;
   }
 };
-
